@@ -13,9 +13,18 @@ else:
 @nox.session(python=python)
 def tests(session):
     """Run tests"""
-    session.run("python", "setup.py", "install")
-    session.install("pytest", "pytest-cov", "pytest-virtualenv")
-    session.install("coverage", "coveralls", "flake8", "pre-commit")
+    # session.run("python", "setup.py", "install") # can't get coverage repory with this
+    session.install(
+        "-e",
+        ".",
+        "pytest",
+        "pytest-cov",
+        "pytest-virtualenv",
+        "coverage",
+        "coveralls",
+        "flake8",
+        "pre-commit",
+    )
     session.run("pytest")
 
 
