@@ -13,7 +13,9 @@ else:
 @nox.session(python=python)
 def tests(session):
     """Run tests"""
-    session.install("-e", ".", "pytest", "pytest-cov")
+    session.run("python", "setup.py", "install")
+    session.install("pytest", "pytest-cov", "pytest-virtualenv")
+    session.install("coverage", "coveralls", "flake8", "pre-commit")
     session.run("pytest")
 
 
@@ -23,4 +25,11 @@ def blacken(session):
     session.install("black", "isort")
     files = ["src", "tests", "noxfile.py", "setup.py"]
     session.run("black", *files)
-    session.run("isort", "--recursive", *files)
+    session.run("isort", *files)
+
+
+@nox.session
+def docs(session):
+    """Build docs"""
+    session.install("sphinx")
+    session.run("python", "setup.py", "docs")
