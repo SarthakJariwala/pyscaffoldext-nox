@@ -1,6 +1,3 @@
-=================
-pyscaffoldext-nox
-=================
 
 .. include:: ../README.rst
 
