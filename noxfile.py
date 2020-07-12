@@ -25,7 +25,18 @@ def tests(session):
         "flake8",
         "pre-commit",
     )
-    session.run("pytest")
+    session.run(
+        "pytest"
+    )
+    session.notify("cover")
+
+
+@nox.session
+def cover(session):
+    """Coverage analysis."""
+    session.install("coverage")
+    session.run("coverage", "report")
+    session.run("coverage", "erase")
 
 
 @nox.session
