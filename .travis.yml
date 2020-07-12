@@ -59,7 +59,8 @@ matrix:
         - export PATH="/C/Python37:/C/Python37/Scripts:$PATH"
 install:
   # - pip install --upgrade pip setuptools
-  - pip install git+https://github.com/cs01/nox.git@5ea70723e9e6#egg=nox #nox
+  - pip install nox
+  - pip install coverage coveralls
 
 before_script:
   - git config --global user.email "you@example.com"
